@@ -1,0 +1,351 @@
+\documentclass[letterpaper,11pt,leqno]{article}
+\usepackage{paper}
+\bibliographystyle{bibliography}
+
+% Enter paper title to populate the PDF metadata:
+\hypersetup{pdftitle={Minimalist LaTeX Template for Academic Papers}}
+
+% Enter BibTeX file with references:
+\newcommand{\bib}{bibliography.bib}
+
+% Enter PDF file with figures:
+\newcommand{\pdf}{figures.pdf}
+
+\begin{document}
+
+% Enter title:
+\title{Strojíme matiku puntíky a šipkami}
+
+% Enter authors:
+\author{Adam Klepáč}
+
+% Enter date:
+\date{\today}   
+
+% Enter permanent URL (can be commented out):
+\available{https://github.com/Tesser3kt/mam}
+
+\begin{titlepage}
+\maketitle
+
+% Enter abstract:
+V tomto témátku se podíváme na to, co jsou \emph{kategorie} a jak se dají použít
+k výtvoru mnoha základních stavebních kamenů matematiky, jako \emph{logiky} nebo
+\emph{množin}.
+
+\end{titlepage}
+
+% Enter main text:
+\section*{Úvod}
+\label{sec:uvod}
+
+Mám rád obrázky. Máš rád obrázky. Má rád obrázky. Máme rádi obrázky. Máte rádi
+obrázky. Mají rádi obrázky.
+
+Teď vážně, kdo nemá rád obrázky. Věřili byste nám, drazí čtenáři, tvrdili-li
+bychom vám, že celou matematiku umíme překreslit do obrázků? Ovšem, ta sama o
+sobě není nikterak odvážná výpověď; vždyť písmena, čísla i vše ostatní na papíře
+jsou vlastně, obrázky. My zde nechováme na mysli ledajaké obrázky, nýbrž
+obrázky, které vzniknou kresbou pouze dvou věcí -- puntíků ($\bullet$) a šipek
+($\longrightarrow$) mezi puntíky. Co však míníme slovy \uv{překreslit celou
+matematiku}, zůstane ještě nějakou chvíli oděno v rouchu tajemství.
+
+\section{Teorie kategorií}
+\label{sec:teorie-kategorii}
+
+Teorie kategorií je matematická disciplína, jež postupně vznikala v průběhu 20.
+století. Za její debut v širém matematickém světe lze považovat knihu
+\emph{Categories for the Working Mathematician}~\footnote{V době vzniku této
+ knihy byla teorie kategorií považována za abstraktní \uv{hrátky} matematiků,
+ již měli dostatek majetku, aby nemuseli pracovat. Užitečnost této teorie i v
+principu praktičtějším odvětvím ukázal právě S. Mac Lane -- odtud přívlastek
+\emph{working} v názvu.} od Saunderse Mac Lana vydanou roku 1971. Dnes se
+vskutku štědře využívá především v oblasti algebry.
+
+Jsouc někdy přezdívána \emph{metamatematikou}, teorie kategorií zkoumá vpravdě
+matematiku jako takovou. Je vlastně jakýmsi pohledem seshora na to rašeliniště
+struktur a konceptů, které vypadají, že mají mnoho společného, ale i mnoho
+rozdílného. Teorie kategorií zkoumá právě ty vlastnosti, které spolu všechny
+sdílejí.
+
+V tomto témátku se s ní velmi pravděpodobně setkáte poprvé. Setkání bude to
+velmi neformální, intuitivní a obrázkové, protože na víc schází času i smyslu.
+Ba, před samotným seznámením se stroze rozhovoříme o jednom zásadním rozumovém
+kroku v pojetí matematiky (a částečně světa), jejž je radno pro zdárné pochopení
+učinit.
+
+V teorii kategorií nebývá zvykem definovat věci určením toho, \uv{co jsou},
+nýbrž výčtem \uv{vlastností, které splňují} či \uv{informací, které nesou}.
+Místo aby řekli: \uv{Toto je hrnek,} kategorici dějí spíše: \uv{Toto je věc,
+která slouží k uskladnění tekutiny během pití.} A \dots pak dalších mnoho stran
+dokazují, že všechny takové věci jsou sobě podobné. Tento velmi svobodný přístup
+má podíl na úspěchu, který teorie kategorií zaznamenala. Totiž, logika i teorie
+množin (nikoli explicitně, ale svým výkladem) v sobě již přirozeně skýtají
+jistou \emph{intepretaci} -- logická spojka $ \wedge $ znamená \uv{a zároveň},
+množina je \uv{souhrn prvků, jež spolu souvisejí} a podobně. Interpretace
+objektu podvědomě zužuje náš obzor a v zásadě nás nutí s ním pracovat konkrétním
+způsobem. Proto vám teď neprozradíme, co kategorie \emph{je} (protože to
+nevíme), ale jenom a pouze, \emph{co ji tvoří}. Následující \uv{definice} je
+šita tak, aby v~sobě shrnovala jen ty zcela nejvšednější vlastnosti všemožných
+matematických struktur (možná jste slyšeli o \emph{grupách}, \emph{okruzích} či
+\emph{vektorových prostorech}). To není bez jejich hlubší znalosti snadné
+prohlédnout, prosíme pročež shovívavé čtenáře o důvěru.
+
+Nyní, \textbf{kategorie} $\mathcal{A}$ je dána následujícími daty:
+\begin{itemize}
+ \item \textbf{puntíky} (formálně \textbf{objekty}), které budeme značit
+  symbolem $\bullet$ či malými písmeny latinské abecedy ($a,b,c,\ldots$),
+  bude-li třeba formálního zápisu;
+ \item \textbf{šipky} (formálně \textbf{morfismy}), které vždy vedou z puntíku
+  do puntíku. Ty budeme značit šipkou $\longrightarrow$, popřípadě malými
+  písmeny řecké abecedy ($\alpha,\beta,\gamma,\ldots$). Formální zápis faktu, že
+  šipka $\alpha$ vede z puntíku $a$ do puntíku $b$ vypadá takto:
+  \[
+   a \overset{\alpha}{\longrightarrow} b \quad \text{nebo} \quad \alpha: a \to
+   b.
+  \]
+  Všechny šipky z $a$ do $b$ v kategorii $\mathcal{A}$ značíme
+  $\mathcal{A}(a,b)$.
+\end{itemize}
+
+Před dokončením definice kategorie se stručně vyjádříme ke značení. Fakt, že
+objekt $a$ patří do kategorie $\mathcal{A}$ se obvykle píše jako $a \in
+\mathcal{A}$. To je ovšem pouze drzé zneužití značení z teorie množin! \emph{V
+žádném smyslu} neznamená, že $a$ je \emph{prvkem} kategorie $\mathcal{A}$,
+protože $\mathcal{A}$ rozhodně nemusí být množina. Ježto si silně nepřejeme,
+abyste nebozí čtenáři přemýšleli o kategoriích jako o \emph{množinách} a o
+objektech jako o \emph{prvcích}, tohoto tradičního značení se zdržíme a budeme
+psát například $a \blacktriangleleft \mathcal{A}$, abychom vyjádřili, že $a$ je
+objekt kategorie $\mathcal{A}$. Ještě jednou a znovu -- to neznamená, že $a$
+\emph{patří do} či \emph{leží v} $\mathcal{A}$. Onen vztah pouze vyjadřuje, že
+objekt $a$ je součástí dat popisujících kategorii $\mathcal{A}$. Podobně, fakt,
+že $\alpha$ je šipka z $a$ do $b$ v~kategorii $\mathcal{A}$ budeme někdy psát
+jako $\alpha \blacktriangleleft \mathcal{A}(a,b)$.
+
+V teorii kategorií je velmi zásadní pojem \emph{komutativity diagramu}. Také
+slovní spojení jistě budí děs a hrůzu: \uv{Neslíbili jste neformální úvod?}
+Ovšem, \textbf{diagram} je zcela libovolný obrázek z puntíků a šipek mezi
+puntíky, o kterém lze prohlásit, že má nějaký počáteční puntík a koncový puntík
+(po směru šipek, pochopitelně). Takový diagram \textbf{komutuje}, když jsou
+všechny cesty z počátečního puntíku do koncového puntíku v kategorii
+$\mathcal{A}$ stejné.
+
+\begin{example}
+ Následující tři diagramy
+ \begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{.3\textwidth}
+   \centering
+
+  \end{subfigure}
+
+ \end{figure}
+\end{example}
+
+Navíc,
+\begin{itemize}
+ \item šipky lze \textbf{skládat}. To znamená, že kdykoli v kategorii
+  $\mathcal{A}$ nastává situace
+  \begin{figure}[H]
+   \centering
+   \begin{tikzcd}
+    & \bullet \drar &\\
+    \bullet \urar & & \bullet,
+   \end{tikzcd}
+  \end{figure}
+  pak existuje šipka, která tento trojúhelník doplňuje. Schematicky (a toto
+  značení budeme používat i nadále)
+  \begin{figure}[H]
+   \centering
+   \begin{tikzcd}
+    & \bullet \drar &\\
+    \bullet \ar[ur] \arrow[rr,"\exists",dashed] & & \bullet.
+   \end{tikzcd}
+  \end{figure}
+  Formálně píšeme, že pro libovolné puntíky $a,b,c$ a šipky $a
+  \overset{\alpha}{\longrightarrow} b, b \overset{\beta}{\longrightarrow} c$,
+  existuje šipka $a \overset{\alpha \beta}{\longrightarrow} c$, které se říká
+  jejich \textbf{složení};
+ \item toto skládání je \textbf{asociativní}. Nezáleží na tom, jestli nejdříve
+  složíme $\alpha$ s $\beta$ a po $\alpha\beta$ pokračujeme šipkou $\gamma$,
+  nebo nejdřív vyrobíme $\beta\gamma$ a před touto jdeme šipkou $\alpha$. To je,
+  soudíme, velmi přirozená podmínka. Formálně $(\alpha\beta)\gamma =
+  \alpha(\beta\gamma)$, a obrázkově
+  \begin{figure}[H]
+   \centering
+   \begin{subfigure}[h]{.4\textwidth}
+    \raggedleft
+    \begin{tikzcd}[sep=large]
+     & \bullet \dar["\beta"] & \bullet \\
+     \bullet \urar["\alpha"] \rar[thick,"\alpha\beta"] & \bullet \urar[thick,"\gamma"'] &
+    \end{tikzcd}
+   \end{subfigure}
+   \begin{subfigure}[h]{.1\textwidth}
+    \centering
+    {\huge $=$}
+   \end{subfigure}
+   \begin{subfigure}[h]{.4\textwidth}
+    \raggedright
+    \begin{tikzcd}[sep=large]
+     & \bullet \dar["\beta"] \rar[thick,"\beta\gamma"'] & \bullet; \\
+     \bullet \urar[thick,"\alpha"] & \bullet \urar["\gamma"'] &
+    \end{tikzcd}
+   \end{subfigure}
+  \end{figure}
+ \item každý puntík má kolem sebe jednu speciální \textbf{smyčku} -- šipku, jež
+  v něm začíná i končí. Speciální v tom smyslu, že její složení s libovolnou
+  jinou šipkou nic nedělá. Je to vlastně taková \uv{zůstaň na místě} šipka.
+  Formálně, ke každému puntíku $a$ existuje šipka $a
+  \overset{1_a}{\longrightarrow} a$ taková, že kdykoli vezmeme šipku $\alpha$,
+  která začíná v $a$, pak $1_a \alpha = \alpha$, a kdykoli vezmeme šipku
+  $\beta$, která končí v $a$, pak $\beta 1_a = \beta$. Obrázkově
+  \begin{figure}[H]
+   \centering
+   \begin{subfigure}[b]{.4\textwidth}
+    \raggedleft
+    \begin{tikzcd}[sep=large]
+     \bullet \rar["\alpha"] \ar[loop,in=225,out=135,looseness=5,"1_a"',shorten
+     >=-5pt] & \bullet
+    \end{tikzcd}
+   \end{subfigure}
+   \begin{subfigure}[H]{.1\textwidth}
+    \centering
+    \vspace{3pt}
+    {\huge $=$}
+   \end{subfigure}
+   \begin{subfigure}[b]{.4\textwidth}
+    \raggedright
+    \begin{tikzcd}[sep=large]
+     \bullet \rar["\alpha"] & \bullet
+    \end{tikzcd}
+   \end{subfigure}
+  \end{figure}
+  \vspace*{-3em}
+  \begin{figure}[H]
+   \centering
+   \begin{subfigure}[b]{.4\textwidth}
+    \raggedleft
+    \begin{tikzcd}[sep=large]
+     \bullet \ar[loop,in=225,out=135,looseness=5,"1_a"',shorten
+     >=-5pt] & \bullet \lar["\beta"]
+    \end{tikzcd}
+   \end{subfigure}
+   \begin{subfigure}[H]{.1\textwidth}
+    \centering
+    \vspace{3pt}
+    {\huge $=$}
+   \end{subfigure}
+   \begin{subfigure}[b]{.4\textwidth}
+    \raggedright
+    \begin{tikzcd}[sep=large]
+     \bullet & \bullet \lar["\beta"]
+    \end{tikzcd}
+   \end{subfigure}
+  \end{figure}
+\end{itemize}
+
+\begin{example}
+ \label{exam:categories}
+ Všechny tyto tři obrázky představují kategorie.
+ \begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{.3\textwidth}
+   \centering
+   \begin{tikzcd}
+    \bullet \rar[shift left=.5ex, "\alpha"]
+    \ar[loop,in=225,out=135,looseness=5,shorten >=-5pt,"1_a"'] &
+    \bullet \lar[shift left=.5ex, "\beta"]
+    \ar[loop,in=315,out=45,looseness=5,shorten >=-5pt, "1_b"]
+   \end{tikzcd}
+  \end{subfigure}
+  \begin{subfigure}[b]{.3\textwidth}
+   \centering
+   \begin{tikzcd}
+    \bullet \ar[loop,out=0,in=90,looseness=7, "1_a"']
+    \ar[loop,out=120,in=210,looseness=5,shorten >=-5pt, "\alpha"']
+    \ar[loop,out=240,in=330,looseness=5,shorten >=-5pt, "\beta"']
+   \end{tikzcd}
+  \end{subfigure}
+  \begin{subfigure}[b]{.3\textwidth}
+   \centering
+   \begin{tikzcd}
+    \bullet \ar[r] \ar[d] \ar[dr] \ar[loop,out=90,in=180,looseness=7,shorten
+    >=-3pt] & \bullet \ar[d] \ar[loop,out=90,in=0,looseness=7,shorten
+    >=-3pt]\\
+    \bullet \ar[r] \ar[loop,out=270,in=180,looseness=7,shorten
+    >=-3pt] & \bullet \ar[loop,out=270,in=0,looseness=7,shorten
+    >=-3pt]
+   \end{tikzcd}
+  \end{subfigure}
+ \end{figure}
+
+
+ Stojí za zmínku, že poslední obrázek je kategorií jedině v případě, když
+ složení šipek po obvodu dolního trojúhelníku je stejné jako složení šipek po
+ obvodu horního trojúhelníku. Tedy jedině, když se přerušované šipky na
+ následujících obrázcích rovnají.
+ \begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{.4\textwidth}
+   \raggedleft
+   \begin{tikzcd}
+    \bullet \ar[d,"\alpha"'] \ar[dr,dashed,"\alpha\beta"] \\
+    \bullet \ar[r,"\beta"'] & \bullet 
+   \end{tikzcd}
+  \end{subfigure}
+  \begin{subfigure}[H]{.1\textwidth}
+   \centering
+   \vspace{3pt}
+   {\huge $=$}
+  \end{subfigure}
+  \begin{subfigure}[b]{.4\textwidth}
+   \raggedright
+   \begin{tikzcd}
+    \bullet \ar[r,"\gamma"] \ar[dr,dashed,"\gamma\delta"'] & \bullet
+    \ar[d,"\delta"] \\
+                                                           & \bullet
+   \end{tikzcd}
+  \end{subfigure}
+ \end{figure}
+ Jinak bychom museli nakreslit z levého horního puntíku do pravého dolního
+ puntíku šipky dvě -- jednu za $\alpha\beta$ a druhou za $\gamma\delta$.
+\end{example}
+
+\begin{problem}[0,5 b]
+ Rozhodněte, zda následující obrázky \textbf{mohou} být kategoriemi. Čili, lze
+ označit některé šipky za stejné (jako na třetím obrázku v
+ příkladě~\ref{exam:categories}) a splnit tak všechny podmínky definice
+ kategorie?
+ \begin{figure}[H]
+  \centering
+  \begin{subfigure}[b]{.3\textwidth}
+   \centering
+   \begin{tikzcd}
+    \bullet \ar[r] \ar[loop,out=90,in=180,looseness=7,shorten >=-3pt]\ar[dr] &
+    \bullet \ar[d] \ar[d] \ar[loop,out=90,in=0,looseness=7,shorten
+    >=-3pt]\\
+    \bullet \ar[u] \ar[loop,out=270,in=180,looseness=7,shorten
+    >=-3pt] \ar[r] & \bullet \ar[loop,out=270,in=0,looseness=7,shorten
+    >=-3pt]
+   \end{tikzcd}
+  \end{subfigure}
+  \begin{subfigure}[b]{.3\textwidth}
+   \centering
+   \begin{tikzcd}
+
+   \end{tikzcd}
+  \end{subfigure}
+  \begin{subfigure}[b]{.3\textwidth}
+   \centering
+   \begin{tikzcd}
+    \bullet \ar[r] \ar[d] \ar[dr] \ar[loop,out=90,in=180,looseness=7,shorten
+    >=-3pt] & \bullet \ar[d] \ar[loop,out=90,in=0,looseness=7,shorten
+    >=-3pt]\\
+    \bullet \ar[r] \ar[loop,out=270,in=180,looseness=7,shorten
+    >=-3pt] & \bullet \ar[loop,out=270,in=0,looseness=7,shorten
+    >=-3pt]
+   \end{tikzcd}
+  \end{subfigure}
+ \end{figure}
+\end{problem}
+\end{document}

@@ -1,3 +1,6 @@
+% ---- Select language ----
+\usepackage[english,czech,shorthands=off]{babel}
+
 % ---- Select text fonts -----
 
 % Make PDF searchable and copyable
@@ -86,7 +89,7 @@
 \NewDocumentCommand{\available}{o g}{%
 \fancypagestyle{plain}{\fancyfoot[C]{\color{gray}\footnotesize%
 \IfValueT{#1}{Published in \emph{#1}\;\textbullet\;}%
-Available at \url{#2}}}}
+Dostupné na \url{#2}}}}
 
 % ---- Format title page ----
 
@@ -138,13 +141,15 @@ Available at \url{#2}}}}
 \newtheorem{definition}{definition}
 \newtheorem{assumption}{assumption}
 \newtheorem{remark}{remark}
+\newtheorem{example}{příklad}
+\newtheorem{problem}{úloha}
 
 % Reformat proof heading
 \renewcommand{\proofname}{\upshape\scshape proof}
 
 % ---- Format tables & figures ----
 
-\usepackage{booktabs,graphicx}
+\usepackage{booktabs,graphicx,float}
 
 % Enable rotation of tables & figures
 \usepackage{rotating}
@@ -252,3 +257,11 @@ Available at \url{#2}}}}
 % ---- Enable hyperlinks  ----
 
 \usepackage[pdftex,hidelinks,hypertexnames=false,pdfpagemode=UseNone,pdfdisplaydoctitle=true]{hyperref}
+
+% ---- Tikz ----
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,cd}
+\tikzstyle{dot}=[circle,fill,inner sep=2pt]
+\tikzcdset{%
+ every arrow/.append style={-Latex,shorten <=-2pt,shorten >=-2pt}
+}
