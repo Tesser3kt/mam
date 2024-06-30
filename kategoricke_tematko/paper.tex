@@ -280,10 +280,13 @@ Navíc,
  \end{figure}
 
 
- Stojí za zmínku, že poslední obrázek je kategorií jedině v případě, když
- složení šipek po obvodu dolního trojúhelníku je stejné jako složení šipek po
- obvodu horního trojúhelníku. Tedy jedině, když se přerušované šipky na
- následujících obrázcích rovnají.
+ Slovo \uv{představují} zde tajně obsahuje podmínku, že jsou splněny rovnosti,
+ které musejí platit, aby ony obrázky opravdu byly kategoriemi. Například v
+ prvním obrázku musí platit $\alpha\beta = 1_a$ a $\beta\alpha = 1_b$, protože
+ kolem každého puntíku je jen jediná smyčka. Poslední obrázek je mimo jiné zase
+ kategorií jedině v případě, když složení šipek po obvodu dolního trojúhelníku
+ je stejné jako složení šipek po obvodu horního trojúhelníku. Tedy jedině, když
+ se přerušované šipky na následujících obrázcích rovnají.
  \begin{figure}[H]
   \centering
   \begin{subfigure}[b]{.4\textwidth}
@@ -312,16 +315,25 @@ Navíc,
 \end{example}
 
 \begin{problem}[0,5 b]
- Rozhodněte, zda následující obrázky \textbf{mohou} být kategoriemi. Čili, lze
- označit některé šipky za stejné (jako na třetím obrázku v
+ Rozhodněte, které z následujících obrázků \textbf{mohou} být kategoriemi. Čili,
+ u kterých lze najít nějaké rovnosti mezi šipkami (jako na obrázcích v
  příkladě~\ref{exam:categories}) a splnit tak všechny podmínky definice
- kategorie?
+ kategorie.
  \begin{figure}[H]
   \centering
   \begin{subfigure}[b]{.3\textwidth}
    \centering
    \begin{tikzcd}
-    \bullet \ar[r] \ar[loop,out=90,in=180,looseness=7,shorten >=-3pt]\ar[dr] &
+    & \bullet \ar[dl] \ar[d] \ar[loop,out=45,in=135,looseness=5,shorten
+    >=-3pt]\\
+    \bullet \ar[loop,out=135,in=225,looseness=4,shorten
+    >=-5pt]& \bullet \ar[loop,out=45,in=315,looseness=4,shorten >=-5pt]
+   \end{tikzcd}
+  \end{subfigure}
+  \begin{subfigure}[b]{.3\textwidth}
+   \centering
+   \begin{tikzcd}
+    \bullet \ar[r] \ar[loop,out=90,in=180,looseness=7,shorten >=-3pt] \ar[dr] &
     \bullet \ar[d] \ar[d] \ar[loop,out=90,in=0,looseness=7,shorten
     >=-3pt]\\
     \bullet \ar[u] \ar[loop,out=270,in=180,looseness=7,shorten
@@ -332,18 +344,15 @@ Navíc,
   \begin{subfigure}[b]{.3\textwidth}
    \centering
    \begin{tikzcd}
-
-   \end{tikzcd}
-  \end{subfigure}
-  \begin{subfigure}[b]{.3\textwidth}
-   \centering
-   \begin{tikzcd}
-    \bullet \ar[r] \ar[d] \ar[dr] \ar[loop,out=90,in=180,looseness=7,shorten
-    >=-3pt] & \bullet \ar[d] \ar[loop,out=90,in=0,looseness=7,shorten
-    >=-3pt]\\
-    \bullet \ar[r] \ar[loop,out=270,in=180,looseness=7,shorten
-    >=-3pt] & \bullet \ar[loop,out=270,in=0,looseness=7,shorten
-    >=-3pt]
+    & \bullet \ar[loop,out=45,in=135,looseness=5,shorten >=-3pt] \ar[d]
+    \ar[ddl,bend right=45]
+    \ar[ddr,bend left=45] &\\
+    & \bullet \ar[dl] \ar[dr] \ar[loop,out=45,in=135,looseness=4,shorten
+    >=-4pt,shorten <=-3pt,crossing over]&\\
+    \bullet \ar[uur] \ar[rr,shift left=.5ex]
+    \ar[loop,out=180,in=270,looseness=6,shorten >=-3pt] & &
+    \bullet \ar[uul] \ar[ll,shift left=.5ex] 
+    \ar[loop,out=0,in=270,looseness=6,shorten >=-3pt]
    \end{tikzcd}
   \end{subfigure}
  \end{figure}
